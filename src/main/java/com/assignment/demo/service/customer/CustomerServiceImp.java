@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
 import java.util.Optional;
@@ -97,7 +98,7 @@ public class CustomerServiceImp implements CustomerService {
         log.info("Type: service, Status: start, log-message: start deleting customer");
         try {
             this.customerRepository.deleteById(id);
-        } catch (NullPointerException e){
+        } catch (NullPointerException | EmptyResultDataAccessException e){
             log.info("Type: service, Status: end, log-message: No record found for customer with id: {}", id);
             throw new NoRecordFoundException();
         }

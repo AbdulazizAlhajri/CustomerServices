@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
 import java.util.Optional;
@@ -116,7 +117,7 @@ public class ServiceServiceImp implements ServiceService {
         log.info("Type: service, Status: end, log-message: start deleting service with id: {}", id);
         try {
             this.serviceRepository.deleteById(id);
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | EmptyResultDataAccessException e) {
             log.info("Type: service, Status: end with exception, log-message: Service Not exist");
             throw new NoRecordFoundException();
         }
