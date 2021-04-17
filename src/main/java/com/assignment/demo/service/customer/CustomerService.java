@@ -10,7 +10,7 @@ public interface CustomerService {
 
     void createCustomer(String name, String phone) throws AlreadyExistException;
 
-    void updateCustomer(String id, String name, String phone) throws AlreadyExistException;
+    void updateCustomer(String id, String name, String phone) throws NoRecordFoundException;
 
     CustomerModel getCustomerByName(String customerName) throws NoRecordFoundException;
 

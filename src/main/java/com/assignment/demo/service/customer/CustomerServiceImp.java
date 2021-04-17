@@ -44,7 +44,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     @CacheEvict(cacheNames = "customer", allEntries = true)
-    public void updateCustomer(String id, String name, String phone) throws AlreadyExistException {
+    public void updateCustomer(String id, String name, String phone) throws NoRecordFoundException {
 
         log.info("Type: service, Status: end, log-message: start updating customer");
         Optional<CustomerView> customerView = this.customerRepository.findById(id);
@@ -55,6 +55,7 @@ public class CustomerServiceImp implements CustomerService {
             log.info("Type: service, Status: end, log-message: Customer updated successfully");
         } else {
             log.info("Type: service, Status: end with exception, log-message: Customer with Id: {} not found", id);
+            throw new NoRecordFoundException();
         }
     }
 

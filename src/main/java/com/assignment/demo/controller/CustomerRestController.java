@@ -35,7 +35,7 @@ public class CustomerRestController {
     }
 
     @PutMapping(value = "/id/{id}")
-    public ResponseEntity<ResponseMessageDto> updateCustomer(@PathVariable String id, @RequestBody CustomerRequest customerRequest) throws AlreadyExistException {
+    public ResponseEntity<ResponseMessageDto> updateCustomer(@PathVariable String id, @RequestBody CustomerRequest customerRequest) throws NoRecordFoundException {
 
         log.info("Type: rest, Status: start, log-message: start updating customer");
         this.customerService.updateCustomer(id, customerRequest.getName(), customerRequest.getPhone());
