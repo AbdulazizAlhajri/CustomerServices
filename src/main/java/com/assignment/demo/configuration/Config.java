@@ -25,6 +25,7 @@ public class Config {
 
     @Bean
     public ServiceService serviceService(CustomerRepository customerRepository, ServiceRepository serviceRepository) {
+
         return new ServiceServiceImp(customerRepository, serviceRepository);
     }
 }
